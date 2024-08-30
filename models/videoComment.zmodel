@@ -1,0 +1,17 @@
+
+ import "./video.zmodel"  
+ import "./user.zmodel"  
+
+model VideoComment {
+
+    id                String        @id @default(uuid())  
+    comment      String?          
+    videoId      String?          
+    video          Video?          @relation(fields: [videoId], references: [id], name:"video")  
+    userId        String?          
+    user            User?            @relation(fields: [userId], references: [id], name:"user")  
+
+dateCreated DateTime @default(now())
+      dateUpdated DateTime @updatedAt  @default(now())
+      @@allow("all", true)
+}

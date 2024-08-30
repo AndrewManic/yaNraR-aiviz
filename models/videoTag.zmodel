@@ -1,0 +1,14 @@
+
+ import "./video.zmodel"  
+
+model VideoTag {
+
+    id                String        @id @default(uuid())  
+    tag              String?          
+    videoId      String?          
+    video          Video?          @relation(fields: [videoId], references: [id], name:"video")  
+
+dateCreated DateTime @default(now())
+      dateUpdated DateTime @updatedAt  @default(now())
+      @@allow("all", true)
+}

@@ -1,0 +1,21 @@
+
+ import "./user.zmodel"  
+ import "./videoTag.zmodel"  
+ import "./videoComment.zmodel"  
+
+model Video {
+
+    id                String        @id @default(uuid())  
+    title          String?          
+    description  String?          
+    url              String?          
+    status        String?          
+    userId        String?          
+    user            User?            @relation(fields: [userId], references: [id], name:"user")  
+
+videoTags  VideoTag[]  @relation("video")  
+    videoComments  VideoComment[]  @relation("video")  
+      dateCreated DateTime @default(now())
+      dateUpdated DateTime @updatedAt  @default(now())
+      @@allow("all", true)
+}
